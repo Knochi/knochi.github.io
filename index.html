@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="BoneProductions – Portfolio for electronics engineering, prototyping and embedded development." />
+  <title>BoneProductions</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #111827;
+      --card: rgba(255,255,255,0.06);
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --accent-2: #22c55e;
+      --border: rgba(255,255,255,0.12);
+      --shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(56,189,248,0.18), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(34,197,94,0.12), transparent 24%),
+        linear-gradient(180deg, var(--bg) 0%, #020617 100%);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: min(1080px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+      background: rgba(2, 6, 23, 0.75);
+      border-bottom: 1px solid var(--border);
+      z-index: 10;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem 0;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      display: grid;
+      place-items: center;
+      color: #001018;
+      font-weight: 800;
+      box-shadow: var(--shadow);
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .lang-toggle {
+      display: inline-flex;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      background: rgba(255,255,255,0.04);
+    }
+
+    .lang-toggle button {
+      appearance: none;
+      border: 0;
+      background: transparent;
+      color: var(--text);
+      padding: 0.55rem 0.9rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.2s ease, color 0.2s ease;
+    }
+
+    .lang-toggle button.active {
+      background: linear-gradient(135deg, var(--accent), #60a5fa);
+      color: #001018;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap: 1.5rem;
+      padding: 4rem 0 2rem;
+      align-items: stretch;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-copy {
+      padding: 2rem;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+    }
+
+    h1 {
+      font-size: clamp(2.1rem, 4vw, 4rem);
+      line-height: 1.05;
+      margin: 0 0 1rem;
+    }
+
+    .lead {
+      font-size: 1.06rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      max-width: 65ch;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.85rem;
+      margin-top: 1.25rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 1.15rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid var(--border);
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+      transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    .button.primary {
+      background: linear-gradient(135deg, var(--accent), #60a5fa);
+      color: #001018;
+      border-color: transparent;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+    }
+
+    .hero-side {
+      padding: 1.2rem;
+      display: grid;
+      gap: 1rem;
+      align-content: start;
+    }
+
+    .stat {
+      padding: 1rem 1.2rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.8rem;
+      color: white;
+    }
+
+    section {
+      padding: 1rem 0 2rem;
+    }
+
+    .section-card {
+      padding: 1.6rem;
+    }
+
+    h2 {
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+    }
+
+    .pill-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+
+    .pill {
+      padding: 0.55rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(56,189,248,0.12);
+      border: 1px solid rgba(56,189,248,0.22);
+      color: #dbeafe;
+      font-size: 0.95rem;
+    }
+
+    footer {
+      padding: 1.25rem 0 3rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    [data-lang] { display: none; }
+    html.lang-de [data-lang="de"],
+    html.lang-en [data-lang="en"] {
+      display: block;
+    }
+    html.lang-de [data-lang-inline="de"],
+    html.lang-en [data-lang-inline="en"] {
+      display: inline;
+    }
+    [data-lang-inline] { display: none; }
+
+    @media (max-width: 860px) {
+      .hero,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+      .nav {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="brand-mark">BP</div>
+        <div>BoneProductions</div>
+      </div>
+      <div class="controls">
+        <div class="lang-toggle" aria-label="Language switcher">
+          <button id="btn-de" class="active" type="button">DE</button>
+          <button id="btn-en" type="button">EN</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <div class="card hero-copy">
+        <div class="eyebrow" data-lang="de">Elektronik · Prototyping · Entwicklung</div>
+        <div class="eyebrow" data-lang="en">Electronics · Prototyping · Development</div>
+
+        <h1 data-lang="de">BoneProductions</h1>
+        <h1 data-lang="en">BoneProductions</h1>
+
+        <p class="lead" data-lang="de">
+          Elektronikentwicklung von der Idee bis zum Prototypen – ergänzt durch praktische Erfahrung,
+          Open-Source-Workflows und Spaß am Tüfteln.
+        </p>
+        <p class="lead" data-lang="en">
+          Electronics design from concept to prototype – complemented by practical experience,
+          open-source workflows, and a hands-on tinkering mindset.
+        </p>
+
+        <div class="cta-row">
+          <a class="button primary" href="#about">
+            <span data-lang-inline="de">Mehr erfahren</span>
+            <span data-lang-inline="en">Learn more</span>
+          </a>
+          <a class="button" href="https://www.fiverr.com/knochi" target="_blank" rel="noopener noreferrer">
+            <span data-lang-inline="de">Fiverr ansehen</span>
+            <span data-lang-inline="en">View Fiverr</span>
+          </a>
+        </div>
+      </div>
+
+      <aside class="card hero-side">
+        <div class="stat">
+          <span data-lang="de">Berufserfahrung</span>
+          <span data-lang="en">Professional experience</span>
+          <strong>13+ Jahre</strong>
+        </div>
+        <div class="stat">
+          <span data-lang="de">Schwerpunkte</span>
+          <span data-lang="en">Focus areas</span>
+          <strong>Elektronik & Prototyping</strong>
+        </div>
+        <div class="stat">
+          <span data-lang="de">Tools</span>
+          <span data-lang="en">Tools</span>
+          <strong>Open Source + Professional</strong>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about">
+      <div class="card section-card">
+        <h2 data-lang="de">Über BoneProductions</h2>
+        <h2 data-lang="en">About BoneProductions</h2>
+
+        <p data-lang="de">
+          Ich bin ein erfahrener Elektronikentwickler und Tüftler. Neben der Elektronikentwicklung von der
+          ersten Idee bis zum Prototypen habe ich mir über die Jahre zusätzliche Fähigkeiten aufgebaut.
+          Ich arbeite gerne mit Open-Source-Software wie KiCAD, OpenSCAD, Inkscape und ähnlichen Tools,
+          habe aber ebenso Erfahrung mit professionellen Entwicklungswerkzeugen.
+        </p>
+        <p data-lang="de">
+          Ich habe vier Jahre in einem kleinen Unternehmen gearbeitet, das optische Inspektionssysteme gebaut hat,
+          anschließend vier Jahre bei BlackBerry und bin seit fünf Jahren bei einer Tochtergesellschaft eines großen
+          deutschen Automobilherstellers tätig. Fiverr nutze ich hauptsächlich aus Spaß an der Sache und zum Lernen
+          in meiner Freizeit.
+        </p>
+
+        <p data-lang="en">
+          I'm an experienced electronics engineer and tinkerer. Beside electronics design from concept to prototype
+          I gathered a few extras skills over the years. I like to use OpenSource Software like KiCAD, OpenSCAD,
+          Inkscape etc. but also experienced in using professional tools.
+        </p>
+        <p data-lang="en">
+          I worked four years at a small company that build optical inspection systems, four years at Blackberry and
+          since 5 years at a subsidiary of a big german car manufacturer. I do Fiverr mainly for fun and education
+          in my spare time.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <div class="grid">
+        <div class="card section-card">
+          <h2 data-lang="de">Leistungen</h2>
+          <h2 data-lang="en">Services</h2>
+          <div class="pill-list">
+            <span class="pill" data-lang="de">Elektronikdesign</span>
+            <span class="pill" data-lang="en">Electronics design</span>
+            <span class="pill" data-lang="de">Prototyping</span>
+            <span class="pill" data-lang="en">Prototyping</span>
+            <span class="pill" data-lang="de">Hardwareentwicklung</span>
+            <span class="pill" data-lang="en">Hardware development</span>
+            <span class="pill" data-lang="de">Tüftelprojekte</span>
+            <span class="pill" data-lang="en">Tinkering projects</span>
+          </div>
+        </div>
+
+        <div class="card section-card">
+          <h2 data-lang="de">Lieblingstools</h2>
+          <h2 data-lang="en">Favorite tools</h2>
+          <div class="pill-list">
+            <span class="pill">KiCAD</span>
+            <span class="pill">OpenSCAD</span>
+            <span class="pill">Inkscape</span>
+            <span class="pill" data-lang="de">Open-Source-Software</span>
+            <span class="pill" data-lang="en">Open-source software</span>
+            <span class="pill" data-lang="de">Professionelle Toolchains</span>
+            <span class="pill" data-lang="en">Professional toolchains</span>
+          </div>
+        </div>
+
+        <div class="card section-card">
+          <h2 data-lang="de">Kontakt & Profile</h2>
+          <h2 data-lang="en">Contact & profiles</h2>
+          <p data-lang="de">
+            Fiverr-Profil: <a href="https://www.fiverr.com/knochi" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">fiverr.com/knochi</a>
+          </p>
+          <p data-lang="en">
+            Fiverr profile: <a href="https://www.fiverr.com/knochi" target="_blank" rel="noopener noreferrer" style="color: var(--accent);">fiverr.com/knochi</a>
+          </p>
+          <p data-lang="de">Diese Seite ist als kompakte Portfolio-Startseite gedacht.</p>
+          <p data-lang="en">This website is intended as a compact portfolio landing page.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <span data-lang="de">© <span id="year"></span> BoneProductions · Deutsch ist die Standardsprache</span>
+    <span data-lang="en">© <span id="year-en"></span> BoneProductions · German is the default language</span>
+  </footer>
+
+  <script>
+    (function () {
+      const html = document.documentElement;
+      const btnDe = document.getElementById('btn-de');
+      const btnEn = document.getElementById('btn-en');
+      const storedLang = localStorage.getItem('boneproductions-lang') || 'de';
+
+      function setLanguage(lang) {
+        html.classList.remove('lang-de', 'lang-en');
+        html.classList.add('lang-' + lang);
+        html.setAttribute('lang', lang);
+        btnDe.classList.toggle('active', lang === 'de');
+        btnEn.classList.toggle('active', lang === 'en');
+        localStorage.setItem('boneproductions-lang', lang);
+      }
+
+      btnDe.addEventListener('click', function () { setLanguage('de'); });
+      btnEn.addEventListener('click', function () { setLanguage('en'); });
+
+      setLanguage(storedLang);
+
+      const year = new Date().getFullYear();
+      const yearEl = document.getElementById('year');
+      const yearEnEl = document.getElementById('year-en');
+      if (yearEl) yearEl.textContent = year;
+      if (yearEnEl) yearEnEl.textContent = year;
+    })();
+  </script>
+</body>
+</html>
